@@ -1,0 +1,56 @@
+import mysql.connector
+
+#Conexão do Banco de Dados
+conexao = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='root',
+    database='sistema_login_pi'
+)
+
+cursor = conexao.cursor()
+
+#CRUD
+
+#Insert
+def criar_usuarios(nome, email):
+    sql = "insert into usuarios (nome, email) values (%s, %s)"
+    valores = (nome, email)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print("usuario criado com sucesso!")
+    
+
+#Select
+def listar_usuarios():
+    cursor.execute("select * from usuarios")
+    resultados = cursor.fetchall()
+    for usuario in resultados:
+        print(usuario)
+
+#Update
+
+def atualizar_usuarios(id, novo_nome, novo_email):
+    sql = "update usuarios set  nome = %s, email = %s where ID_usuario = %s" 
+    valores = (novo_nome, novo_email, id) 
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print("usuario atualizado com sucesso!")
+
+
+#delete  
+def deletar_usuarios(id):
+    sql = "delete from usuarios where id = %s"
+    valores = (id,)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print("usuario deletado com sucesso!")
+
+
+
+listar_usuarios() 
+
+atualizar_usuarios (2, "eduardo", "eduardo@email.com")
+
+
+
