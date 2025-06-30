@@ -1,0 +1,114 @@
+import mysql.connector
+
+#conexao banco de dados
+conexao = mysql.connector.connect(
+host='localhost',
+user='root',
+password='root',
+database='projeto_pi'
+)
+
+cursor = conexao.cursor()
+
+#CRUD
+
+#Insert
+
+def adicionar_cliente(id_cliente, cpf, nome, telefone, email, endereco):
+    sql = 'insert into cliente (id_cliente, cpf, nome,telefone, email, endereço) values (%s, %s, %s, %s, %s, %s)'
+    valores = (id_cliente, cpf, nome, telefone, email, endereco) 
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print('cliente cadastrado com sucesso!')
+
+def adicionar_funcionario(id_funcionario, cpf, nome, telefone, email, endereco, cargo):
+    sql = 'insert into funcionario (id_funcionario, cpf, nome, telefone, email, endereço, cargo) values (%s, %s, %s,%s, %s, %s, %s)'
+    valores = (id_funcionario, cpf, nome, telefone, email, endereco, cargo)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print('funcionario cadastrado com sucesso!')
+
+def adicionar_pagamentos(id_pagamento, id_cliente, valor, data_pagamento,forma_pagamento):
+    sql = 'insert into pagamentos (id_ pagamento, id_cliente, valor, data_pagamento, forma_pagamento) values (%s, %s, %s, %s, %s)' 
+    valores = (id_pagamento, id_cliente, valor, data_pagamento, forma_pagamento)  
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print('pagamento registrado com sucesso!')
+
+def adicionar_audiencias(id_audiencia, id_cliente, id_processo, data_audiencia, hora_audiencia, local, descricao):
+    sql = 'insert into audiêcia (id_audiência, id_cliente, id_processo, data_audiência, hora_audiência, local, descrição) values (%s, %s, %s, %s, %s, %s, %s)'
+    valores = (id_audiencia, id_cliente, id_processo, data_audiencia, hora_audiencia, local, descricao )
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print('audiência cadastrada com sucesso!')
+
+def adicionar_processos(id_processo, id_cliente, tipo_processo, descricao, data_abertura, data_fechamento):
+    sql = 'insert into processos(id_processo, id_cliente, tipo_processo, descrição, data_abertura, data_fechamento) values (%s, %s, %s, %s, %s, %s)'
+    valores = (id_processo, id_cliente, tipo_processo, descricao, data_abertura, data_fechamento)
+    cursor.execute(sql, valores)
+    conexao.commit()
+    print('processo cadastrado com sucesso!')
+
+# select
+
+def listar_cliente():
+    cursor.execute('select * from cliente where')
+    resultados = cursor.fetchall()
+    for cliente in resultados:
+        print(cliente)
+
+def listar_funcionario():
+    cursor.execute('select * from funcionario where')
+    resultados = cursor.fetchall()
+    for funcionario in resultados:
+        print(funcionario)
+    
+def listar_pagamentos():
+    cursor.execute('select * from pagamentos where')
+    resultados = cursor.fetchall()
+    for pagamentos in resultados:
+        print(pagamentos)
+
+def listar_audiencias():
+    cursor.execute('select * from audiencias where')
+    resultados = cursor.fetchall()
+    for audiencias in resultados:
+        print(audiencias)
+    
+def listar_processos():
+    cursor.execute('select * from processos where')
+    resultados = cursor.fetchyall()
+    for processos in resultados:
+        print(processos)
+
+        # update
+
+def atualizar_cliente(id_cliente, novo_cpf, novo_nome, novo_telefone, novo_email, novo_endereco):
+        sql = 'update cliente set id_cliente = %s, cpf = %s, nome = %s, telefone = %s, email = %s, endereco = %s  where id_cliente = %s'
+        valores = ( novo_cpf, novo_nome, novo_telefone, novo_email, novo_endereco, id_cliente)
+        cursor.execute(sql, valores)
+        conexao.commit()
+        print('cliente atualizado com sucesso!')
+
+def atualizar_funcionario(id_funcionario, novo_cpf, novo_nome, novo_telefone, novo_email, novo_endereco, novo_cargo):
+        sql = 'update funcionario set id_funcionario = %s, cpf = %s, nome = %s, telefone = %s, email = %s, endereco = %s, cargo = %s where id_funcionario = %s'
+        valores = (novo_cpf, novo_nome, novo_telefone, novo_email, novo_endereco, novo_cargo, id_funcionario)
+        cursor.execute(sql, valores)
+        conexao.commit()
+        print('funcionario atualizado com sucesso!')
+
+def atualizar_pagamentos(id_pagamento, novo_id_cliente, novo_valor, nova_data_pagamento, nova_forma_pagamento):
+
+
+
+
+        def atualizar_audiencias(id_audiencias, novo_id_cliente, novo_id_processo, nova_data_audiencia, nova_hora_audiencia, novo_local, nova_descricao):
+
+
+
+
+        def atualizar_processos
+
+
+
+
